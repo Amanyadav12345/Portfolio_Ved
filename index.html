@@ -1,66 +1,669 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vedika Garg - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-  
-    <!-- Add Google Fonts Link -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  </head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #06b6d4;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Glass morphism container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Header */
+        header {
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            padding: 40px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 40px;
+        }
+
+        .section-content {
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--gradient-2);
+            border-radius: 2px;
+        }
+
+        /* About section */  
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        /* Education section */
+        .education-list {
+            list-style: none;
+        }
+
+        .education-item {
+            padding: 20px;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .education-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .education-details {
+            color: var(--text-secondary);
+        }
+
+        /* Skills section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .skill-category {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Experience section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-3);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            margin-left: 20px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .experience-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .cert-card {
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cert-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .cert-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            padding: 30px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-content {
+                padding: 20px;
+            }
+            
+            .hero-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
 <body>
-  <header>
-    <h1>Vedika Garg</h1>
-    <p>Economics (Honours) Student | Data Enthusiast</p>
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vedikagarg9@gmail.com&su=Enquiry%20from%20Portfolio&body=Hi%20Vedika,%20I%20am%20interested%20in%20your%20profile." target="_blank">Contact Me</a> |
-    <a href="https://www.linkedin.com/in/vedika-garg-a01333270" target="_blank">LinkedIn</a> | 
-    <a href="VedikaCVfinal.pdf" download>Download Resume</a>
-  </header>
+    <!-- Animated background -->
+    <div class="bg-animation"></div>
+    
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
 
-  <section class="about">
-    <h2>About Me</h2>
-    <p>Third-year BA Economics (Honours) student with strong communication, problem-solving, and teamwork skills. Passionate about economic analysis and practical applications in real-world scenarios.</p>
-  </section>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="glass-card">
+                <div class="hero-content">
+                    <h1 class="hero-title">Vedika Garg</h1>
+                    <p class="hero-subtitle">Economics (Honours) Student | Data Enthusiast</p>
+                    <div class="hero-links">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vedikagarg9@gmail.com&su=Enquiry%20from%20Portfolio&body=Hi%20Vedika,%20I%20am%20interested%20in%20your%20profile." target="_blank" class="btn btn-primary">
+                            📧 Contact Me
+                        </a>
+                        <a href="https://www.linkedin.com/in/vedika-garg-a01333270" target="_blank" class="btn btn-secondary">
+                            💼 LinkedIn
+                        </a>
+                        <a href="VedikaCVfinal.pdf" download class="btn btn-secondary">
+                            📄 Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-  <section class="education">
-    <h2>Education</h2>
-    <ul>
-      <li><b>Manipal University Jaipur</b> - BA Economics Honours (2025) - CGPA: 7.65</li>
-      <li><b>Sheiling House School Kanpur</b> - Class XII (2022) - 78%</li>
-      <li><b>Sheiling House School Kanpur</b> - Class X (2020) - 90%</li>
-    </ul>
-  </section>
+        <!-- About Section -->
+        <section class="about animate-on-scroll">
+            <div class="glass-card">
+                <div class="section-content">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="about-text">
+                        Third-year BA Economics (Honours) student with strong communication, problem-solving, and teamwork skills. 
+                        Passionate about economic analysis and practical applications in real-world scenarios, with a focus on data-driven 
+                        insights and innovative solutions.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-  <section class="skills">
-    <h2>Skills</h2>
-    <h3>Technical Skills</h3>
-    <p>MS Word, PowerPoint, Excel, SPSS, R, SQL, Graphic Designing, PowerBI, Financial Modeling</p>
-    <h3>Soft Skills</h3>
-    <p>Communication, Teamwork, Analytical Skills, Time Management, Problem-Solving</p>
-  </section>
+        <!-- Education Section -->
+        <section class="education animate-on-scroll">
+            <div class="glass-card">
+                <div class="section-content">
+                    <h2 class="section-title">Education</h2>
+                    <ul class="education-list">
+                        <li class="education-item">
+                            <div class="education-title">Manipal University Jaipur</div>
+                            <div class="education-details">BA Economics Honours (2025) - CGPA: 7.65</div>
+                        </li>
+                        <li class="education-item">
+                            <div class="education-title">Sheiling House School Kanpur</div>
+                            <div class="education-details">Class XII (2022) - 78%</div>
+                        </li>
+                        <li class="education-item">
+                            <div class="education-title">Sheiling House School Kanpur</div>
+                            <div class="education-details">Class X (2020) - 90%</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-  <section class="experience">
-    <h2>Experience & Projects</h2>
-    <ul>
-      <li><b>Research and Development (Aug 2024 - Nov 2024)</b>: Analyzed income levels and health insurance demand using regression and correlation analysis.</li>
-      <li><b>Digital Marketing Intern at Muskurahat Foundation (Jul 2024 - Aug 2024)</b>: Specialized in campaign strategy and digital media marketing.</li>
-      <li><b>Graphic Design & Research at Enactus MUJ (Apr 2023 - Jun 2024)</b>: Created visual content using Canva and Adobe; conducted project-based research.</li>
-    </ul>
-  </section>
+        <!-- Skills Section -->
+        <section class="skills animate-on-scroll">
+            <div class="glass-card">
+                <div class="section-content">
+                    <h2 class="section-title">Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Technical Skills</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">MS Word</span>
+                                <span class="skill-tag">PowerPoint</span>
+                                <span class="skill-tag">Excel</span>
+                                <span class="skill-tag">SPSS</span>
+                                <span class="skill-tag">R</span>
+                                <span class="skill-tag">SQL</span>
+                                <span class="skill-tag">Graphic Design</span>
+                                <span class="skill-tag">PowerBI</span>
+                                <span class="skill-tag">Financial Modeling</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Soft Skills</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Communication</span>
+                                <span class="skill-tag">Teamwork</span>
+                                <span class="skill-tag">Analytical Skills</span>
+                                <span class="skill-tag">Time Management</span>
+                                <span class="skill-tag">Problem-Solving</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <section class="certifications">
-    <h2>Certifications</h2>
-    <ul>
-      <li>Financial Literacy Course for Bharat (NISM)</li>
-      <li>Microsoft PowerBI Data Analyst (Coursera)</li>
-      <li>Financial Market by Yale University (Coursera)</li>
-      <li>Portfolio and Risk Management by University of Geneva (Coursera)</li>
-    </ul>
-  </section>
+        <!-- Experience Section -->
+        <section class="experience animate-on-scroll">
+            <div class="glass-card">
+                <div class="section-content">
+                    <h2 class="section-title">Experience & Projects</h2>
+                    <div class="experience-timeline">
+                        <div class="experience-item">
+                            <div class="experience-title">Research and Development (Aug 2024 - Nov 2024)</div>
+                            <div class="experience-description">
+                                Analyzed income levels and health insurance demand using regression and correlation analysis. 
+                                Developed comprehensive data models to understand market dynamics and consumer behavior patterns.
+                            </div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-title">Digital Marketing Intern at Muskurahat Foundation (Jul 2024 - Aug 2024)</div>
+                            <div class="experience-description">
+                                Specialized in campaign strategy and digital media marketing. Created engaging content and 
+                                implemented data-driven marketing strategies to increase foundation visibility and impact.
+                            </div>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-title">Graphic Design & Research at Enactus MUJ (Apr 2023 - Jun 2024)</div>
+                            <div class="experience-description">
+                                Created visual content using Canva and Adobe Creative Suite. Conducted project-based research 
+                                and developed comprehensive design solutions for social impact initiatives.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <p>Made with ❤️ by Vedika Garg</p>
-  </footer>
+        <!-- Certifications Section -->
+        <section class="certifications animate-on-scroll">
+            <div class="glass-card">
+                <div class="section-content">
+                    <h2 class="section-title">Certifications</h2>
+                    <div class="cert-grid">
+                        <div class="cert-card">
+                            <div class="cert-icon">💰</div>
+                            <h4>Financial Literacy Course for Bharat</h4>
+                            <p>NISM</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-icon">📊</div>
+                            <h4>Microsoft PowerBI Data Analyst</h4>
+                            <p>Coursera</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-icon">📈</div>
+                            <h4>Financial Market</h4>
+                            <p>Yale University (Coursera)</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-icon">💼</div>
+                            <h4>Portfolio and Risk Management</h4>
+                            <p>University of Geneva (Coursera)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="animate-on-scroll">
+            <div class="glass-card">
+                <div class="footer-content">
+                    <p>Made with ❤️ by Vedika Garg</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Animate on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            animateOnScroll();
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
