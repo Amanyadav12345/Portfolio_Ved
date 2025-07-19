@@ -37,7 +37,7 @@
             overflow-x: hidden;
         }
 
-        /* Professional Navigation */
+        /* Navigation */
         .nav-bar {
             position: fixed;
             top: 0;
@@ -516,6 +516,25 @@
             line-height: 1.6;
         }
 
+        .experience-points {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .experience-points li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .experience-points li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
         /* Certifications Section */
         .certifications {
             background: var(--bg-secondary);
@@ -578,6 +597,73 @@
             font-weight: 600;
         }
 
+        /* Projects Section */
+        .projects {
+            background: var(--bg-primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-lg);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: var(--bg-accent);
+            color: var(--text-primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
         /* Contact Section */
         .contact {
             background: var(--secondary);
@@ -632,11 +718,21 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        .contact-form {
+        .contact-text a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .contact-text a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-cta {
             background: rgba(255, 255, 255, 0.1);
             padding: 40px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
+            text-align: center;
         }
 
         /* Footer */
@@ -649,29 +745,6 @@
 
         .footer-text {
             color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .animate-on-scroll.animate {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* Responsive Design */
@@ -713,6 +786,27 @@
                 gap: 10px;
             }
         }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.8s ease forwards;
+        }
     </style>
 </head>
 <body>
@@ -725,6 +819,7 @@
                 <li><a href="#education">Education</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -739,9 +834,9 @@
                     <h1>Economics Professional & Data Analyst</h1>
                     <p class="hero-subtitle">BA Economics (Honours) | Research & Analytics Specialist</p>
                     <p class="hero-description">
-                        Dedicated economics student with proven expertise in data analysis, research methodology, 
-                        and financial modeling. Passionate about leveraging analytical skills to drive 
-                        evidence-based decision making and economic insights.
+                        Results-driven Economics undergraduate with demonstrated expertise in quantitative analysis, 
+                        financial modeling, and data visualization. Passionate about leveraging analytical skills to 
+                        deliver actionable business insights through advanced statistical analysis.
                     </p>
                     <div class="hero-stats">
                         <div class="stat">
@@ -758,7 +853,7 @@
                         </div>
                     </div>
                     <div class="hero-actions">
-                        <a href="VedikaCVfinal.pdf" download class="btn btn-primary">
+                        <a href="#contact" class="btn btn-primary">
                             📄 Download Resume
                         </a>
                         <a href="#contact" class="btn btn-secondary">
@@ -794,17 +889,16 @@
             <div class="summary-content animate-on-scroll">
                 <div class="summary-text">
                     <p>
-                        As a third-year BA Economics (Honours) student at Manipal University Jaipur, I bring a unique blend 
-                        of theoretical knowledge and practical application to economic analysis and data interpretation. 
-                        My academic journey has been complemented by hands-on experience in research, digital marketing, 
-                        and graphic design, providing me with a well-rounded skill set that spans multiple domains.
+                        Results-driven Economics undergraduate with demonstrated expertise in quantitative analysis, 
+                        financial modeling, and data visualization. Proven track record in conducting comprehensive 
+                        market research, developing strategic marketing campaigns, and delivering actionable business 
+                        insights through advanced statistical analysis.
                     </p>
                     <br>
                     <p>
-                        I am particularly passionate about using data-driven approaches to solve complex economic problems 
-                        and have demonstrated proficiency in statistical analysis tools including R, SPSS, and SQL. 
-                        My experience ranges from conducting regression analysis on health insurance demand to developing 
-                        comprehensive financial models, always with a focus on delivering actionable insights.
+                        Strong proficiency in data analytics tools including R, SQL, SPSS, and Power BI, combined with 
+                        exceptional communication and project management capabilities. Passionate about using data-driven 
+                        approaches to solve complex economic problems and contribute dynamically to organizations.
                     </p>
                 </div>
                 <div class="summary-highlights">
@@ -842,7 +936,7 @@
                     <div class="education-content">
                         <div class="education-title">Bachelor of Arts - Economics (Honours)</div>
                         <div class="education-school">Manipal University Jaipur</div>
-                        <div class="education-grade">CGPA: 7.65</div>
+                        <div class="education-grade">CGPA: 7.65/10.0</div>
                     </div>
                 </div>
                 <div class="education-item">
@@ -876,27 +970,29 @@
                 <div class="skill-category">
                     <h3><span class="skill-icon">💻</span> Technical Skills</h3>
                     <div class="skill-list">
-                        <div class="skill-item">Microsoft Excel</div>
-                        <div class="skill-item">PowerPoint</div>
-                        <div class="skill-item">SPSS</div>
                         <div class="skill-item">R Programming</div>
+                        <div class="skill-item">SPSS</div>
                         <div class="skill-item">SQL</div>
-                        <div class="skill-item">PowerBI</div>
+                        <div class="skill-item">Power BI</div>
+                        <div class="skill-item">Microsoft Excel</div>
                         <div class="skill-item">Financial Modeling</div>
-                        <div class="skill-item">Graphic Design</div>
+                        <div class="skill-item">DCF Analysis</div>
+                        <div class="skill-item">Adobe Creative Suite</div>
+                        <div class="skill-item">Canva</div>
+                        <div class="skill-item">PowerPoint</div>
                     </div>
                 </div>
                 <div class="skill-category">
                     <h3><span class="skill-icon">🤝</span> Professional Skills</h3>
                     <div class="skill-list">
-                        <div class="skill-item">Communication</div>
+                        <div class="skill-item">Strategic Communication</div>
                         <div class="skill-item">Team Leadership</div>
-                        <div class="skill-item">Analytical Thinking</div>
-                        <div class="skill-item">Time Management</div>
-                        <div class="skill-item">Problem Solving</div>
-                        <div class="skill-item">Research</div>
                         <div class="skill-item">Project Management</div>
-                        <div class="skill-item">Critical Analysis</div>
+                        <div class="skill-item">Critical Problem-Solving</div>
+                        <div class="skill-item">Market Research</div>
+                        <div class="skill-item">Time Management</div>
+                        <div class="skill-item">Stakeholder Engagement</div>
+                        <div class="skill-item">Competitive Analysis</div>
                     </div>
                 </div>
             </div>
@@ -914,37 +1010,277 @@
                 <div class="experience-item">
                     <div class="experience-header">
                         <div>
-                            <div class="experience-title">Research and Development Analyst</div>
+                            <div class="experience-title">Research Analyst</div>
                             <div class="experience-company">Independent Research Project</div>
                         </div>
                         <div class="experience-duration">Aug 2024 - Nov 2024</div>
                     </div>
                     <div class="experience-description">
-                        Conducted comprehensive analysis of income levels and health insurance demand using advanced 
-                        regression and correlation analysis techniques. Developed statistical models to identify key 
-                        factors influencing insurance purchasing decisions, providing valuable insights for market 
-                        understanding and policy recommendations.
+                        Conducted comprehensive market research analyzing correlation between socioeconomic factors and health insurance adoption patterns.
                     </div>
+                    <ul class="experience-points">
+                        <li>Implemented advanced regression and correlation analysis methodologies to extract actionable business insights</li>
+                        <li>Developed data collection frameworks across multiple channels, ensuring statistical validity and reliability</li>
+                        <li>Created executive-level presentations and documentation using Power BI for data visualization</li>
+                        <li>Delivered strategic recommendations based on quantitative findings to optimize market penetration strategies</li>
+                    </ul>
                 </div>
+                
                 <div class="experience-item">
                     <div class="experience-header">
                         <div>
-                            <div class="experience-title">Digital Marketing Intern</div>
+                            <div class="experience-title">Digital Marketing Specialist (Intern)</div>
                             <div class="experience-company">Muskurahat Foundation</div>
                         </div>
                         <div class="experience-duration">Jul 2024 - Aug 2024</div>
                     </div>
                     <div class="experience-description">
-                        Specialized in developing and implementing comprehensive campaign strategies and digital media 
-                        marketing initiatives. Created engaging content across multiple platforms, analyzed campaign 
-                        performance metrics, and contributed to increasing organizational visibility and community 
-                        engagement through data-driven marketing approaches.
+                        Specialized in developing and implementing comprehensive campaign strategies and digital media marketing initiatives.
                     </div>
+                    <ul class="experience-points">
+                        <li>Designed and executed integrated digital marketing campaigns across social media platforms</li>
+                        <li>Developed compelling content strategies that enhanced brand engagement and community outreach</li>
+                        <li>Collaborated with cross-functional teams to optimize campaign performance and achieve organizational objectives</li>
+                        <li>Applied persuasive communication techniques to drive stakeholder engagement and program participation</li>
+                    </ul>
                 </div>
+
                 <div class="experience-item">
                     <div class="experience-header">
                         <div>
                             <div class="experience-title">Graphic Designer & Research Associate</div>
                             <div class="experience-company">Enactus MUJ</div>
                         </div>
-                        <div class="experience-duration">Apr 2023 - Jun
+                        <div class="experience-duration">Apr 2023 - Jun 2024</div>
+                    </div>
+                    <div class="experience-description">
+                        Created high-impact visual content and conducted strategic research for social entrepreneurship projects.
+                    </div>
+                    <ul class="experience-points">
+                        <li>Created high-impact visual content and marketing collateral using Adobe Creative Suite and Canva</li>
+                        <li>Conducted strategic research on ongoing social entrepreneurship projects and market opportunities</li>
+                        <li>Performed advanced data analysis using Excel macros and pivot tables for project evaluation</li>
+                        <li>Supported project teams with research insights and visual communication strategies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Key Projects & Achievements</h2>
+                <p class="section-subtitle">Demonstrating practical application of analytical and research skills</p>
+            </div>
+            <div class="projects-grid animate-on-scroll">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">📊</div>
+                        <div class="project-title">Health Insurance Market Analysis Study</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            Led comprehensive research project examining income-health insurance correlation patterns. 
+                            Utilized statistical modeling techniques including regression analysis and hypothesis testing. 
+                            Presented findings through professional data visualization and executive summary reports.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">R Programming</span>
+                            <span class="tech-tag">SPSS</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Statistical Analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">📱</div>
+                        <div class="project-title">Digital Campaign Strategy Development</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            Designed multi-channel marketing campaigns resulting in enhanced organizational visibility. 
+                            Applied strategic communication principles to optimize audience engagement metrics and 
+                            drive meaningful community impact through targeted digital outreach.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Digital Marketing</span>
+                            <span class="tech-tag">Content Strategy</span>
+                            <span class="tech-tag">Social Media</span>
+                            <span class="tech-tag">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🏢</div>
+                        <div class="project-title">Social Entrepreneurship Research Initiative</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            Conducted market feasibility studies for social impact projects. Developed financial models 
+                            and risk assessment frameworks for project evaluation, contributing to evidence-based 
+                            decision making for sustainable business initiatives.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Financial Modeling</span>
+                            <span class="tech-tag">Market Research</span>
+                            <span class="tech-tag">Risk Assessment</span>
+                            <span class="tech-tag">Excel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certifications" id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Professional Certifications</h2>
+                <p class="section-subtitle">Continuous learning and professional development</p>
+            </div>
+            <div class="cert-grid animate-on-scroll">
+                <div class="cert-card">
+                    <div class="cert-icon">💰</div>
+                    <div class="cert-title">Financial Literacy Certification</div>
+                    <div class="cert-issuer">National Institute of Securities Markets (NISM)</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">📊</div>
+                    <div class="cert-title">Microsoft Power BI Data Analyst</div>
+                    <div class="cert-issuer">Coursera</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">📈</div>
+                    <div class="cert-title">Financial Markets Specialization</div>
+                    <div class="cert-issuer">Yale University (Coursera)</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">📋</div>
+                    <div class="cert-title">Portfolio and Risk Management</div>
+                    <div class="cert-issuer">University of Geneva (Coursera)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Open to opportunities in Finance, Consulting, Data Analysis, and Market Research</p>
+            </div>
+            <div class="contact-content animate-on-scroll">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:vedikagarg9@gmail.com">vedikagarg9@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p>+91 9554991610</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h4>Location</h4>
+                            <p>Kanpur, UP, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div class="contact-text">
+                            <h4>LinkedIn</h4>
+                            <p><a href="https://www.linkedin.com/in/vedika-garg-a01333270" target="_blank">linkedin.com/in/vedika-garg-a01333270</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-cta">
+                    <h3 style="margin-bottom: 20px;">Ready to Collaborate?</h3>
+                    <p style="margin-bottom: 30px; color: rgba(255,255,255,0.8);">
+                        I'm passionate about using data-driven approaches to solve complex problems and contribute 
+                        to meaningful projects. Let's discuss how my analytical skills can add value to your organization.
+                    </p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="mailto:vedikagarg9@gmail.com" class="btn btn-primary">Send Email</a>
+                        <a href="https://www.linkedin.com/in/vedika-garg-a01333270" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-text">
+                <p>&copy; 2024 Vedika Garg. All rights reserved. | Economics Professional & Data Analyst</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.nav-bar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
